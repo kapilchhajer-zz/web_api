@@ -1,0 +1,13 @@
+description "uWSGI server instance configured to serve chronos api"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+setuid vagrant
+setgid www-data
+
+env PATH=/home/vagrant/chronos/env/bin
+chdir /home/vagrant/chronos
+# env NEW_RELIC_CONFIG_FILE=/home/vagrant/chronos/newrelic.ini
+# exec newrelic-admin run-program uwsgi --ini wsgi.ini
+exec uwsgi --ini wsgi.ini
